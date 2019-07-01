@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { post } from './posts/posts.model'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mean';
+
+  postAdded: post[] = [];
+
+  createPost(ppost: post ) {
+      this.postAdded.push(ppost);
+  }
+
 }
