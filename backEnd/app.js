@@ -20,7 +20,7 @@ app.use((res,req,next)=>{
 })
 //
 
-mongoose.connect('mongodb+srv://amaan:12345@Qwerty@cluster0-7ztfc.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true } ).then(()=>{
+mongoose.connect('mongodb+srv://amaan:12345@Qwerty@cluster0-7ztfc.mongodb.net/meanStack?retryWrites=true&w=majority', { useNewUrlParser: true } ).then(()=>{
   console.log('Database Connected')
 })
 .catch(()=>{console.log('connection failed')})
@@ -31,26 +31,21 @@ app.post('/api/posts',(req, res, next )=>{
     title:req.body.title,
     content:req.body.content
   })
-
+  post.save();
  console.log(post)
- res.status(200).json({message:'Posted Successfully', post:post})
+ res.status(200).json({message:'Posted Successfully'})
 })
 
-app.use('/api/posts',(req,res,next)=>{
-  const posts = [{
-    id:"12ejdfjfhfff33",
-    title:"Kashmir",
-    content:"Paradise on Earth"
-  },
-  {
-    id:"iuh769j86tg7554f4",
-    title:"Earth",
-    content:"Blue Planet"
-  }
-];
-  res.status(200).json({message:'Posts fetched Successfully ',
-    posts:posts
-})
+app.get('/api/posts',(req,res,next)=>{
+
+  Post.find().then((doc)=>{
+    res.status(200).json({
+      message:'Post fetched successfully',
+      posts:doc
+    })
+    console.log(doc)
+  })
+
 
 })
 

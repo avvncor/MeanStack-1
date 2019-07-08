@@ -17,14 +17,14 @@ export class PostService {
 
 
 
-  getPosts() {
-    this.http.get<{message: string, posts: post[]}>('http://localhost:3000/api/posts')
-    .subscribe((postData)=>{
+  // getPosts() {
+  //   this.http.get<{message: string, posts: post[]}>('http://localhost:3000/api/posts')
+  //   .subscribe((postData)=>{
 
-        this.posts = postData.posts;
-    })
-    return this.posts;
-  }
+  //       this.posts = postData.posts;
+  //   })
+  //   return this.posts;
+  // }
 
 
 
@@ -32,7 +32,7 @@ export class PostService {
     const posting = data;
    // this.posts.push( data );
     this.http.post<{message: string, Post: postSchema}>('http://localhost:3000/api/posts', posting).subscribe((dataPosted) => {
-     console.log(dataPosted.message + ' ' + dataPosted.Post);
+     console.log(dataPosted.message);
    });
   }
 
