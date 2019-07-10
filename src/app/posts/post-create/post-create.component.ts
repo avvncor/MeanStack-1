@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { post } from '../posts.model';
 import { NgForm } from '@angular/forms';
 import { PostService } from '../post.service';
+import { HttpClient} from '@angular/common/http' ;
+import { postSchema} from '../../../../backEnd/models/posts';
 
 @Component({
   selector: 'app-post-create',
@@ -10,7 +12,7 @@ import { PostService } from '../post.service';
 })
 export class PostCreateComponent implements OnInit {
 
-  constructor(public postService: PostService) { }
+  constructor(public postService: PostService, public http: HttpClient) { }
   title = '';
   content = '';
 
